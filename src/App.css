@@ -1,4 +1,6 @@
 #root {
+  --main-text-color: #07057c;
+
   margin: 0 auto;
   display: grid;
   grid-template-areas: 'head output'
@@ -8,6 +10,7 @@
   min-height: 100vh;
   gap: 0 2rem;
   overflow: hidden;
+  color: var(--main-text-color);
 }
 
 
@@ -43,7 +46,7 @@ header {
 }
 .card {
   background: #fff;
-  padding: 0.5rem 1.5rem;
+  padding: 1rem 2rem;
   border-radius: 5px;
 }
 .card button i {
@@ -55,14 +58,25 @@ header {
 }
 .card-header h2 {
   font-size: 1.33rem;
+  margin: 0;
 }
 .card-header button, .card-header button:focus {
   background: none;
   border: none;
   outline: none;
+  padding: 0;
 }
-.card-content {
+/*.card-content {
   padding: 1rem 0;
+}*/
+.card form {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.card form input {
+  padding: 0.33rem 0.75rem;
+  display: block;
 }
 
 
@@ -94,6 +108,22 @@ header {
   z-index: 98;
   margin: 3rem 3.5rem 1.5rem 3.5rem;
   padding: 2rem;
+}
+.fullname {
+  font-size: 2.5rem;
+  font-weight: 300;
+  border-bottom: 5pt solid var(--main-text-color);
+  max-width: 425px;
+  line-height: 2.5rem;
+  padding-bottom: 0.75rem;
+}
+.fullname .last {
+  font-weight: 600;
+}
+.occupation {
+  text-transform: uppercase;
+  padding-top: 0.5rem;
+  letter-spacing: 2px;
 }
 .cv-pic {
   z-index: 99;
