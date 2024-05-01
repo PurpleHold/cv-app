@@ -1,9 +1,11 @@
+import Card from "./card"
+
 function Exp() {
 
     return (
-        <div className="exp card">
-            <p>experience</p>
-        </div>
+        <Card 
+        title='Experience' 
+        content='content'/>
     )
 }
 
