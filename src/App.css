@@ -7,6 +7,7 @@
   grid-template-columns: clamp(600px, 40vw, 860px);
   min-height: 100vh;
   gap: 0 2rem;
+  overflow: hidden;
 }
 
 
@@ -72,7 +73,7 @@ header {
   grid-area: output;
 }
 .paper {
-  width: 21.1cm;
+  width: 21cm;
   height: 29.7cm;
 }
 .paper, .output, .cv-xp, .cv-training {

@@ -1,17 +1,37 @@
 import { useState } from 'react'
 import './App.css'
 import Header from './components/header.jsx'
-import EditUi from './components/edit-ui.jsx'
-import LiveOutput from './components/live-output.jsx'
+import PersonInfo from "./components/personal-info.jsx"
+import Training from "./components/training"
+import Exp from "./components/experience"
+import CVPersInfo from "./components/cv-personal-info"
+import CVTraining from "./components/cv-training"
+import CVExperience from "./components/cv-experience"
+import placeHolder from './assets/placeholder.png'
 
 function App() {
-//  const [formData, setFormData] = useState('Ada Lovelace');
+  const [name, setName] = useState('Ada Lovelace');
 
   return (
     <>
+      <div className="edit-ui">
+            <PersonInfo name={name} />
+            <Training />
+            <Exp />
+      </div>
       <Header />
-      <EditUi />
-      <LiveOutput />
+      <div className="doc-container">
+            <div className="paper">
+                <div className="output">
+                    <CVPersInfo name={name} />
+                    <div className="cv-pic">
+                        <img src={placeHolder} alt="profile picture dimensions, 250 height 200 width pixels" />
+                    </div>
+                    <CVTraining />
+                    <CVExperience />
+                </div>
+            </div>
+        </div>
     </>
   )
 }

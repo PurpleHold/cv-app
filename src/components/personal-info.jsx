@@ -1,10 +1,16 @@
 import Card from "./card"
 
-function PersonInfo() {
+function PersonInfo({name}) {
     return (
         <Card 
         title='Personal details' 
-        content='content'/>
+        content={
+        <div>
+            <label> Name:
+            <input type="text" value="" placeholder={name}/>
+            </label>
+        </div>
+    }/>
     )
 }
 
