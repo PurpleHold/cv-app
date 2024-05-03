@@ -18,7 +18,7 @@
 header {
   grid-area: head;
   padding: 3rem 3rem 0rem 3rem;
-  background: #dfe8f1;
+  background: #e2f3f8;
 }
 .logo i::before {
   font-size: 3rem;
@@ -42,7 +42,7 @@ header {
   gap: 1rem;
   grid-area: input;
   padding: 3rem;
-  background: #dfe8f1;
+  background: #e2f3f8;
 }
 .card {
   background: #fff;
@@ -78,6 +78,34 @@ header {
   padding: 0.33rem 0.75rem;
   display: block;
 }
+.opt {
+  display: flex;
+}
+.opt.off {
+  background: #e2f3f8;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.opt.off input {
+  display: none;
+}
+.opt.off button {
+  color: var(--main-text-color);
+}
+.opt.on {
+  align-items: flex-end;
+}
+.opt.on button, .opt.on button:hover {
+  background: none;
+  padding: 0.1rem 1rem;
+  font-size: 1.25rem;
+  border: none;
+  outline: none;
+  color: var(--main-text-color);
+}
 
 
 
@@ -89,14 +117,16 @@ header {
 .paper {
   width: 21cm;
   height: 29.7cm;
+  margin: 3rem 0;
 }
-.paper, .output, .cv-xp, .cv-training {
+.output, .cv-xp, .cv-training {
   display: grid;
 }
 .output {
+  max-width: 21cm;
+  max-height: 29.7cm;
   grid-template-rows: 1.2fr 1.5fr 1.5fr;
   grid-template-columns: 1.3fr 1fr 1fr;
-  padding: 3rem 0;
 
 }
 .cv-xp, .cv-training {
@@ -108,6 +138,7 @@ header {
   z-index: 98;
   margin: 3rem 3.5rem 1.5rem 3.5rem;
   padding: 2rem;
+  max-height: 235px;
 }
 .fullname {
   font-size: 2.5rem;
