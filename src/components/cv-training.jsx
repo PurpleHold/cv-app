@@ -3,7 +3,7 @@ function CVTraining() {
     return (
         <div className="cv-training">
             <div className="cv-train-container">
-                <p>training</p>
+                <p className="section-title">training</p>
             </div>
         </div>
     )

@@ -13,6 +13,10 @@ function App() {
   const [firstName, setFirstName] = useState('Ada');
   const [lastName, setLastName] = useState('Lovelace');
   const [occupation, setOccupation] = useState('Mathematician & Inventor');
+  const [location, setLocation] = useState('Ockham, Surrey, UK');
+  const [email, setEmail] = useState('noemailin1852@email.com');
+  const [phone, setPhone] = useState('XX.XX.XX.XX');
+  const [website, setWebsite] = useState('');
 
   return (
     <>
@@ -21,6 +25,10 @@ function App() {
               firstName={firstName} setFirstName={setFirstName} 
               lastName={lastName} setLastName={setLastName} 
               occupation={occupation} setOccupation={setOccupation} 
+              location = {location} setLocation={setLocation}
+              email = {email} setEmail={setEmail}
+              phone={phone} setPhone={setPhone}
+              website={website} setWebsite={setWebsite}
             />
             <Training />
             <Exp />
@@ -29,7 +37,10 @@ function App() {
       <div className="doc-container">
             <div className="paper">
                 <div className="output">
-                    <CVPersInfo firstName={firstName} lastName={lastName} occupation={occupation} />
+                    <CVPersInfo 
+                    firstName={firstName} lastName={lastName} 
+                    occupation={occupation} 
+                    location={location} email={email} phone={phone} website={website}/>
                     <div className="cv-pic">
                         <img src={placeHolder} alt="profile picture dimensions, 250 height 200 width pixels" />
                     </div>

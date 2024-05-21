@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function OptField({label, type='text', fieldState, fieldStateFunc}) {
-    const [hideStatus, setHideStatus] = useState(false)
+function OptField({label, type='text', fieldState, fieldStateFunc, empty=false}) {
+    const [hideStatus, setHideStatus] = useState(empty ? true : false);
     const handleHideStatus = (e) => {
         e.preventDefault();
         setHideStatus(!hideStatus);
@@ -11,7 +11,7 @@ function OptField({label, type='text', fieldState, fieldStateFunc}) {
     return (
         <div className={`opt ${!hideStatus ? 'on' : 'off'}`}>
             <label>{label}
-                 <input type={type} placeholder={fieldState} onChange={(e) => fieldStateFunc(e.target.value)}/>
+                 <input type={type} value={fieldState} placeholder={fieldState} onChange={(e) => fieldStateFunc(e.target.value)}/>
             </label>
             <button onClick={handleHideStatus}>
             {hideStatus ? 'Add' : 'X'}

@@ -5,7 +5,11 @@ import OptField from "./Opt-field"
 function PersonInfo({
     firstName, setFirstName, 
     lastName, setLastName, 
-    occupation, setOccupation}) {
+    occupation, setOccupation,
+    location, setLocation,
+    email, setEmail,
+    phone, setPhone,
+    website, setWebsite}) {
 
     return (
         <Card 
@@ -21,6 +25,22 @@ function PersonInfo({
             <OptField 
                 label={'Occupation '} fieldState={occupation}
                 fieldStateFunc={setOccupation}
+            />
+            <OptField 
+                label={'Location '} fieldState={location}
+                fieldStateFunc={setLocation}
+            />
+            <OptField 
+                label={'Email '} type='email' fieldState={email}
+                fieldStateFunc={setEmail}
+            />
+            <OptField 
+                label={'Phone '} type='tel' fieldState={phone}
+                fieldStateFunc={setPhone}
+            />
+            <OptField 
+                label={'Website '} fieldState={website}
+                fieldStateFunc={setWebsite} empty={true}
             />
         </form>
         }/>
