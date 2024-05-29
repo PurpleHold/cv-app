@@ -1,11 +1,16 @@
 import Card from "./card"
+import TrainingForm from "./training-form"
 
-function Training() {
+function Training({
+    training, setTraining
+    }) {
 
     return (
         <Card 
         title='Training' 
-        content='content'/>
+        content={
+            <TrainingForm id={0} training={training} setTraining={setTraining}/>
+        }/>
     )
 }
 

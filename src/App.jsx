@@ -18,6 +18,11 @@ function App() {
   const [phone, setPhone] = useState('XX.XX.XX.XX');
   const [website, setWebsite] = useState('');
 
+  const [training, setTraining] = useState({
+    0:{id:'ex1', title:'Some really interesting degree', univ:'Awesome University', year:'1835'},
+    1:{id:'ex2', title:'Yet another diploma', univ:'Prestigious College', year:'1838'},
+  });
+
   return (
     <>
       <div className="edit-ui">
@@ -30,7 +35,9 @@ function App() {
               phone={phone} setPhone={setPhone}
               website={website} setWebsite={setWebsite}
             />
-            <Training />
+            <Training 
+              training={training} setTraining={setTraining}
+            />
             <Exp />
       </div>
       <Header />
@@ -38,13 +45,16 @@ function App() {
             <div className="paper">
                 <div className="output">
                     <CVPersInfo 
-                    firstName={firstName} lastName={lastName} 
-                    occupation={occupation} 
-                    location={location} email={email} phone={phone} website={website}/>
+                      firstName={firstName} lastName={lastName} 
+                      occupation={occupation} 
+                      location={location} email={email} phone={phone} website={website}
+                    />
                     <div className="cv-pic">
                         <img src={placeHolder} alt="profile picture dimensions, 250 height 200 width pixels" />
                     </div>
-                    <CVTraining />
+                    <CVTraining 
+                      training = {training}
+                    />
                     <CVExperience />
                 </div>
             </div>
