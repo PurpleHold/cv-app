@@ -1,11 +1,11 @@
 import { useState } from "react"
 
 
-function Card({title, content}) {
+function Card({title, content, sectionClass=''}) {
     const [isHidden, setIsHidden] = useState(true);
 
     return (
-        <div className="card">
+        <div className={`card ${sectionClass}`}>
             <div className="card-header">
                 <h2>{title}</h2>
                 <button

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TrainingForm({id, training, setTraining}) {
+function TrainingForm({id, training, setTraining, create=false}) {
     const [hideStatus, setHideStatus] = useState(false);
     const handleHideStatus = (e) => {
         e.preventDefault();
@@ -33,24 +33,35 @@ function TrainingForm({id, training, setTraining}) {
             }
         })
     }
+    const handleDelete = (e, id) => {
+        e.preventDefault();
+        console.log(training)
+        setTraining({...training, [id]:null});
+        console.log(training)
+    }
 
     return (
-        <div className={`${!hideStatus ? 'on' : 'off'}`}>
+        <>
+            {training[id] && (
+            <div className={`train-form ${!hideStatus ? 'on' : 'off'}`}>
             <form action="">
-                <label>Year of graduation
-                <input type="text" placeholder={training[id].year} onChange={(e) => handleYearChange(e, id)}/>
-                </label>
                 <label>Title of diploma
-                <input type="text" placeholder={training[id].title} onChange={(e) => handleDiplomaChange(e, id)}/>
+                <input type="text" placeholder={create ? '' : training[id].title} onChange={(e) => handleDiplomaChange(e, id)}/>
                 </label>
                 <label>Training institute
-                <input type="text" placeholder={training[id].univ} onChange={(e) => handleUnivChange(e, id)}/>
+                <input type="text" placeholder={create ? '' : training[id].univ} onChange={(e) => handleUnivChange(e, id)}/>
                 </label>
+                <label>Year of graduation
+                <input type="text" placeholder={create ? '' : training[id].year} onChange={(e) => handleYearChange(e, id)}/>
+                </label>
+                <button onClick={(e) => handleDelete(e, id)}>Delete</button>
             </form>
             <button onClick={handleHideStatus}>
             {hideStatus ? 'Add' : 'X'}
             </button>
-        </div>
+        </div>)
+        }
+        </>
     )
 }
 

@@ -19,8 +19,8 @@ function App() {
   const [website, setWebsite] = useState('');
 
   const [training, setTraining] = useState({
-    0:{id:'ex1', title:'Some really interesting degree', univ:'Awesome University', year:'1835'},
-    1:{id:'ex2', title:'Yet another diploma', univ:'Prestigious College', year:'1838'},
+    0:{id:0, title:'Some really interesting degree', univ:'Awesome University', year:'1835'},
+    1:{id:1, title:'Yet another diploma', univ:'Prestigious College', year:'1838'},
   });
 
   return (

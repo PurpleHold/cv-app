@@ -151,6 +151,7 @@ header {
 .cv-training .section-title {
   color: #fff;
   border-bottom: 1pt solid white;
+  margin-bottom: 1rem;
 }
 .cv-xp .section-title {
   color: var(--main-text-color);
@@ -218,6 +219,27 @@ header {
 }
 .cv-train-container {
   grid-area: train-contents;
+}
+.train-entries {
+  display: grid;
+  gap: 1rem;
+  color: #fff;
+}
+.train-entries div p {
+  margin: 0;
+  padding: 0;
+}
+.train-entries .title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.train-entries .univ {
+  font-style: italic;
+  letter-spacing: 1px;
+}
+.train-entries .year {
+  letter-spacing: 3px;
+  font-size: 1.1rem;
 }
 .cv-xp-container {
   grid-area: xp-contents;
