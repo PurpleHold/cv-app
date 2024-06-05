@@ -161,12 +161,12 @@ header {
   grid-area: 1 / 1 / 1 / 4;
   background: #fff;
   z-index: 98;
-  margin: 3rem 3.5rem 1.5rem 3.5rem;
+  margin: 3rem 0 1.5rem 3rem;
   padding: 1.5rem;
   max-height: 255px;
   display: grid;
   align-content: space-between;
-  max-width: 415px;
+  max-width: 450px;
 }
 .fullname {
   font-size: 2.5rem;
@@ -197,25 +197,23 @@ header {
 .cv-pic {
   z-index: 99;
   grid-area: 1 / 3 / 2 / 4;
-  margin: 3rem 3.5rem 0rem 0rem;
+  margin: 3rem 3rem 0rem 0rem;
   max-width: 200px;
   max-height: 250px;
 }
 .cv-training {
   grid-area: 1 / 1 / 4 / 2;
   background: #4067f4;
-  padding: 1.5rem 1.75rem 3.5rem 3.5rem;
-  grid-template-areas: 
-  '.'
+  padding: 1.5rem 1.5rem 3.5rem 3rem;
+  grid-template-areas: '.'
   'train-contents';
 }
 .cv-xp {
   grid-area: 1 / 2 / 4 / 4;
   background: linear-gradient(157deg, rgba(232,223,229,1) 0%, rgba(212,243,254,1) 100%);
-  padding: 1.5rem 3.5rem 3.5rem 1.75rem;
-  grid-template-areas: 
-  '.'
-  'xp-contents';
+  padding: 1.5rem 3rem 3.5rem 1.5rem;
+  grid-template-areas: '.'
+'xp-contents';
 }
 .cv-train-container {
   grid-area: train-contents;
@@ -231,7 +229,6 @@ header {
 }
 .train-entries .title {
   font-weight: 600;
-  font-size: 1.1rem;
 }
 .train-entries .univ {
   font-style: italic;
@@ -239,7 +236,6 @@ header {
 }
 .train-entries .year {
   letter-spacing: 3px;
-  font-size: 1.1rem;
 }
 .cv-xp-container {
   grid-area: xp-contents;

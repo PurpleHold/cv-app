@@ -21,7 +21,7 @@ function Training({
                     {id: newId,
                     title: 'Degree Name',
                     univ: 'University Name',
-                    year: 'XXXX'}
+                    year: 'YEAR'}
                 }
                 setTraining(trainingsUpdate)
 
