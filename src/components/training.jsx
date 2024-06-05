@@ -1,15 +1,13 @@
 import Card from "./card"
-import TrainingForm from "./training-form"
+import SectionForm from "./section-form"
 
-function Training({
-    training, setTraining
-    }) {
+function Training({training, setTraining}) {
     
     let trainingsArr = [];
     for (let i = 0; i < Object.entries(training).length; i++) {
         trainingsArr.push(
             training[i] && (
-                    <TrainingForm id={i} training={training} setTraining={setTraining} key={i}/>
+                    <SectionForm id={i} stateVal={training} stateFn={setTraining} formType={'train'} key={i}/>
             )
         )
     }
@@ -20,7 +18,7 @@ function Training({
                 let trainingsUpdate = { ...training, [newId]: 
                     {id: newId,
                     title: 'Degree Name',
-                    univ: 'University Name',
+                    orga: 'University Name',
                     year: 'YEAR'}
                 }
                 setTraining(trainingsUpdate)

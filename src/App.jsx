@@ -19,8 +19,14 @@ function App() {
   const [website, setWebsite] = useState('');
 
   const [training, setTraining] = useState({
-    0:{id:0, title:'Some really interesting degree', univ:'Awesome University', year:'1835'},
-    1:{id:1, title:'Yet another diploma', univ:'Prestigious College', year:'1838'},
+    0:{id:0, title:'Some really interesting degree', orga:'Awesome University', year:'2019'},
+    1:{id:1, title:'Yet another diploma', orga:'Prestigious College', year:'2017'},
+  });
+  const [experience, setExperience] = useState({
+    0:{id:0, title:'Lead Developer', orga:'Awesome Company', year:'2022 - Now', 
+      desc:'Describe here the skills you developped in this organisation, relevant projects or challenges'},
+    1:{id:1, title:'UX Designer', orga:'Prestigious Organisation', year:'2019 - 2022', 
+      desc:'Describe here the skills you developped in this organisation, relevant projects or challenges'},
   });
 
   return (
@@ -38,7 +44,9 @@ function App() {
             <Training 
               training={training} setTraining={setTraining}
             />
-            <Exp />
+            <Exp 
+              experience={experience} setExperience={setExperience}
+            />
       </div>
       <Header />
       <div className="doc-container">
@@ -52,10 +60,8 @@ function App() {
                     <div className="cv-pic">
                         <img src={placeHolder} alt="profile picture dimensions, 250 height 200 width pixels" />
                     </div>
-                    <CVTraining 
-                      training = {training}
-                    />
-                    <CVExperience />
+                    <CVTraining training = {training}/>
+                    <CVExperience experience = {experience}/>
                 </div>
             </div>
         </div>
