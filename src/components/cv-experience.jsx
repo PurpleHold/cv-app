@@ -4,9 +4,11 @@ function CVExperience({experience}) {
         expArr.push(
             experience[i] && (
                 <div key={experience[i].id}>
-                    {experience[i].title && (<p className="title">{experience[i].title}</p>)}
+                    <div className="xp-header">
+                        {experience[i].title && (<p className="title">{experience[i].title}</p>)}
+                        {experience[i].year && (<p className="year">{experience[i].year}</p>)}
+                    </div>
                     {experience[i].orga && (<p className="orga">{experience[i].orga}</p>)}
-                    {experience[i].year && (<p className="year">{experience[i].year}</p>)}
                     {experience[i].desc && (<p className="desc">{experience[i].desc}</p>)}
                 </div>
             )

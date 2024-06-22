@@ -28,14 +28,12 @@ function Training({training, setTraining}) {
     return (
         <Card 
         title='Training'
-        sectionClass={'training'} 
+        sectionClass={'train-card'}
         content={
             <>
-            <div>
-                <div className="cv-train-container">
+                <div className="edit-train-container">
                     {trainingsArr}
                 </div>
-            </div>
                 <button className="add" onClick={(e) => handleFormCreation(e)}>New</button>
             </>
         }/>

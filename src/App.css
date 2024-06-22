@@ -28,13 +28,10 @@ header {
   display: flex;
   font-size: 2rem;
 }
-/*main {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  min-height: 100vw;
-}*/
 
 
+
+/* INPUT */
 
 .edit-ui {
   display: flex;
@@ -44,17 +41,21 @@ header {
   padding: 3rem;
   background: #e2f3f8;
 }
-.card {
-  background: #fff;
-  padding: 1rem 2rem;
-  border-radius: 5px;
-}
 .card button i {
   font-size: 2rem;
+}
+.card-header, .card-content {
+  background: #fff;
+  border-radius: 5px;
 }
 .card-header {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+.card-header.on {
+  border-radius: 5px 5px 0 0;
 }
 .card-header h2 {
   font-size: 1.33rem;
@@ -66,30 +67,50 @@ header {
   outline: none;
   padding: 0;
 }
-/*.card-content {
-  padding: 1rem 0;
-}*/
-.card form {
+.card-content {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem 1.5rem;
+}
+.card form .main-form, .pers-card form .extra {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
   align-items: flex-end;
 }
-.card form input {
-  padding: 0.5rem 0.5rem;
+.card form input, textarea {
   display: block;
   font-size: 1rem;
+  font-family: inherit;
+}
+.card form input {
+  max-width: 225px;
+  padding: 0.5rem 0.5rem;
 }
 .card-content label {
   margin: 0;
+}
+.edit-train-container, .edit-xp-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.fields-separator {
+  border-bottom: 2pt dotted black;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 1rem 0 0.5rem 0;
+  color: black;
 }
 .opt {
   display: flex;
 }
 .opt.off {
   background: #e2f3f8;
-  padding: 0.35rem 0.75rem;
-  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
   gap: 1rem;
   align-items: center;
   justify-content: center;
@@ -113,7 +134,45 @@ header {
   outline: none;
   color: var(--main-text-color);
 }
+.train-card .extra label, .exp-card .extra label {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+textarea { 
+  resize: vertical;
+  padding: 1rem 0.5rem;
+ }
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.form-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #4067f4;
+  color: #fff;
+}
+.off .form-header .form-delete {
+  display: none;
+}
+button.add {
+  background: none;
+  border: 2pt solid #4067f4;
+  color: #4067f4;
+  letter-spacing: 1px;
+  padding: 0.5rem 2rem;
+}
+button.form-delete {
+  background: none;
+  border: 2pt solid black;
+}
 
+
+/* OUTPUT */
 
 
 .doc-container {
@@ -147,11 +206,11 @@ header {
   margin: 0;
   font-weight: 600;
   padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .cv-training .section-title {
   color: #fff;
   border-bottom: 1pt solid white;
-  margin-bottom: 1rem;
 }
 .cv-xp .section-title {
   color: var(--main-text-color);
@@ -218,25 +277,51 @@ header {
 .cv-train-container {
   grid-area: train-contents;
 }
-.train-entries {
+.train-form.off form, .xp-form.off form {
+  display: none;
+}
+.train-form.on button, .xp-form.on button {
+  margin-bottom: 1rem;
+}
+.train-entries, .xp-entries {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
+  line-height: 1.4rem;
+}
+.train-entries {
   color: #fff;
 }
-.train-entries div p {
+.train-entries div p, .xp-entries div p {
   margin: 0;
   padding: 0;
 }
-.train-entries .title {
+.train-entries .title, .xp-entries .title {
   font-weight: 600;
 }
-.train-entries .univ {
+.train-entries .title::before, .xp-entries .title::before {
+  padding-left: 7px;
+  content: '';
+}
+.train-entries .title::before {
+  border-left: 4px solid #fff;
+}
+.xp-entries .title::before {
+  border-left: 4px solid var(--main-text-color);
+}
+.train-entries .univ, .xp-entries .orga {
   font-style: italic;
   letter-spacing: 1px;
 }
-.train-entries .year {
+.train-entries .year, .xp-entries .year {
   letter-spacing: 3px;
 }
 .cv-xp-container {
   grid-area: xp-contents;
+}
+.xp-header {
+  display: flex;
+  gap: 1.3rem;
+}
+.xp-entries .orga, .train-entries .year {
+  padding-bottom: 0.5rem;
 }

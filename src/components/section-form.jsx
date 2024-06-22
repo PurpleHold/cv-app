@@ -53,28 +53,32 @@ function SectionForm({id, stateVal, stateFn, formType}) {
     return (
         <>
             {stateVal[id] && (
-            <div className={`${formType}-form ${!hideStatus ? 'on' : 'off'}`}>
+            <div className={`${formType}-form ${!hideStatus ? 'off' : 'on'}`}>
+                <div className="form-header">
+                    <button className="form-title" onClick={handleHideStatus}>
+                    {stateVal[id].title} <i className={`iconoir-${!hideStatus ? 'plus-circle' : 'minus-circle'}`}></i>
+                    </button>
+                    <button className="form-delete" onClick={(e) => handleDelete(e, id)}>Delete</button>
+                </div>
                 <form action="">
-                    <label>{formType == 'train' ? 'Title of diploma' : 'Position title'}
-                    <input type="text" placeholder={stateVal[id].title} onChange={(e) => handleTitleChange(e, id)}/>
-                    </label>
-                    <label>{formType == 'train' ? 'Training institute' : 'Organisation'}
-                    <input type="text" placeholder={stateVal[id].orga} onChange={(e) => handleOrgaChange(e, id)}/>
-                    </label>
-                    <label>{formType == 'train' ? 'Year of graduation' : 'Start year - End year'}
-                    <input type="text" placeholder={stateVal[id].year} onChange={(e) => handleYearChange(e, id)}/>
-                    </label>
-                    {formType == 'xp' &&(
-                        <label>Description
-                        <textarea placeholder={stateVal[id].desc} onChange={(e) => handleDescChange(e, id)}>
+                    <div className="main-form">
+                        <label>{formType == 'train' ? 'Title of diploma' : 'Position title'}
+                        <input type="text" placeholder={stateVal[id].title} onChange={(e) => handleTitleChange(e, id)}/>
+                        </label>
+                        <label>{formType == 'train' ? 'Training institute' : 'Organisation'}
+                        <input type="text" placeholder={stateVal[id].orga} onChange={(e) => handleOrgaChange(e, id)}/>
+                        </label>
+                        <label>{formType == 'train' ? 'Year of graduation' : 'Start year - End year'}
+                        <input type="text" placeholder={stateVal[id].year} onChange={(e) => handleYearChange(e, id)}/>
+                        </label>
+                    </div>
+                    <div className="extra">
+                        <label>{formType == 'train' ? 'Extra information (optional)' : 'Description'}
+                        <textarea placeholder={stateVal[id].desc} onChange={(e) => handleDescChange(e, id)} rows={3}>
                         </textarea>
                         </label>
-                    )}
-                    <button onClick={(e) => handleDelete(e, id)}>Delete</button>
+                    </div>
                 </form>
-                <button onClick={handleHideStatus}>
-                {hideStatus ? 'Add' : 'X'}
-                </button>
             </div>
             )}
         </>

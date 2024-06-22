@@ -6,14 +6,12 @@ function Card({title, content, sectionClass=''}) {
 
     return (
         <div className={`card ${sectionClass}`}>
-            <div className="card-header">
+            <button className={`card-header ${!isHidden ? 'on' : 'off'}`} onClick={() => setIsHidden(!isHidden)}> 
                 <h2>{title}</h2>
-                <button
-                    onClick={() => setIsHidden(!isHidden)}> {isHidden ? <i className="iconoir-nav-arrow-down"></i> : <i className="iconoir-nav-arrow-up"></i>}
-                </button>
-            </div>
+                {isHidden ? <i className="iconoir-nav-arrow-down"></i> : <i className="iconoir-nav-arrow-up"></i>}
+            </button>
             {!isHidden && (
-                <div className="card-content">{content}</div>
+            <div className="card-content">{content}</div>
             )}
         </div>
     )

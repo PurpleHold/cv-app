@@ -7,6 +7,7 @@ function CVTraining({training}) {
                     {training[i].title && (<p className="title">{training[i].title}</p>)}
                     {training[i].orga && (<p className="univ">{training[i].orga}</p>)}
                     {training[i].year && (<p className="year">{training[i].year}</p>)}
+                    {training[i].desc && (<p className="desc">{training[i].desc}</p>)}
                 </div>
             )
         )

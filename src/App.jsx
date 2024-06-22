@@ -19,18 +19,21 @@ function App() {
   const [website, setWebsite] = useState('');
 
   const [training, setTraining] = useState({
-    0:{id:0, title:'Some really interesting degree', orga:'Awesome University', year:'2019'},
-    1:{id:1, title:'Yet another diploma', orga:'Prestigious College', year:'2017'},
+    0:{id:0, title:'Some really interesting degree', orga:'Awesome University', year:'2019', desc:'Any relevant final year project, study trip, dissertation, ...'},
+    1:{id:1, title:'Yet another diploma', orga:'Prestigious College', year:'2017', desc:''},
   });
   const [experience, setExperience] = useState({
     0:{id:0, title:'Lead Developer', orga:'Awesome Company', year:'2022 - Now', 
-      desc:'Describe here the skills you developped in this organisation, relevant projects or challenges'},
+      desc:'Describe here the skills you developped in this organisation, projects completed, challenges addressed. More information about the company/organisation if relevant'
+    },
     1:{id:1, title:'UX Designer', orga:'Prestigious Organisation', year:'2019 - 2022', 
-      desc:'Describe here the skills you developped in this organisation, relevant projects or challenges'},
+      desc:'Describe here the skills you developped in this organisation, projects completed, challenges addressed. More information about the company/organisation if relevant'
+    },
   });
 
   return (
     <>
+      <Header />
       <div className="edit-ui">
             <PersonInfo 
               firstName={firstName} setFirstName={setFirstName} 
@@ -48,7 +51,6 @@ function App() {
               experience={experience} setExperience={setExperience}
             />
       </div>
-      <Header />
       <div className="doc-container">
             <div className="paper">
                 <div className="output">
