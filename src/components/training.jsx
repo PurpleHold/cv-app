@@ -1,7 +1,7 @@
 import Card from "./card"
 import SectionForm from "./section-form"
 
-function Training({training, setTraining}) {
+function Training({training, setTraining, onPosChange}) {
     
     let trainingsArr = [];
     for (let i = 0; i < Object.entries(training).length; i++) {
@@ -26,9 +26,11 @@ function Training({training, setTraining}) {
     }
 
     return (
-        <Card 
+        <Card
+        onPosChange={onPosChange}
         title='Training'
         sectionClass={'train-card'}
+        type='train'
         content={
             <>
                 <div className="edit-train-container">

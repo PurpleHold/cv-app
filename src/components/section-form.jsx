@@ -84,6 +84,35 @@ function SectionForm({id, stateVal, stateFn, formType}) {
         </>
     )
     }
+    else if(formType == 'skill') {
+        return (
+            <>
+                {stateVal[id] && (
+                <div className={`${formType}-form ${!hideStatus ? 'off' : 'on'}`}>
+                    <div className="form-header">
+                        <button className="form-title" onClick={handleHideStatus}>
+                        {stateVal[id].title} <i className={`iconoir-${!hideStatus ? 'plus-circle' : 'minus-circle'}`}></i>
+                        </button>
+                        <button className="form-delete" onClick={(e) => handleDelete(e, id)}>Delete</button>
+                    </div>
+                    <form action="">
+                        <div className="main-form">
+                            <label>Skill name
+                            <input type="text" placeholder={stateVal[id].title} onChange={(e) => handleTitleChange(e, id)}/>
+                            </label>
+                        </div>
+                        <div className="extra">
+                            <label>Description
+                            <textarea placeholder={stateVal[id].desc} onChange={(e) => handleDescChange(e, id)} rows={3}>
+                            </textarea>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                )}
+            </>
+        )
+    }
     else {
         return null;
     }
