@@ -38,58 +38,102 @@ function App() {
 
   
 
-  const [rightPos, setRightPos] = useState([0]);
+  const [rightPos, setRightPos] = useState([2]);
   const [leftPos, setLeftPos] = useState([0,1]);
 
-  let dataIds = {
-    left:[
-      {data:training,type:'train',name:'Training', id:'L0'},
-      {data:experience,type:'xp',name:'Experience', id:'L1'},
-    ],
-    right:[
-      {data:skill,type:'skill',name:'Skills', id:'R0'},
-    ],
-  }
-  let dataMap = new Map();
+  let dataIds = [
+      {data:training,type:'train',name:'Training'},
+      {data:experience,type:'xp',name:'Experience'},
+      {data:skill,type:'skill',name:'Skills'},
+    ];
 
-  const onPosChange = (type, move) => {
+  let dataMap = new Map();
+  // Initialize first positions
+  dataMap.set('train', [0,0])
+  dataMap.set('xp', [0,1])
+  dataMap.set('skill', [1,2])
+
+  const onPosChange = (type, move, direction) => {
     let min = 0;
     let id = dataMap.get(`${type}`);
 
-    if (id[0] > 0) {
-      let max = (dataIds.right.filter((obj) => obj.data!='')).length-1;
-      console.log(max);
-      let pos = rightPos.findIndex((x) => x == id[1]);
-      let newPos = pos + move;
-
-      if ((newPos < min) || newPos > max) {
+    if (direction == 'ver') {
+      if (id[0] > 0) {
+        let max = rightPos.length-1;
+        let pos = rightPos.findIndex((x) => x == id[1]);
+        let newPos = pos + move;
+  
+        if ((newPos < min) || newPos > max) {
+          return;
+        }
+        let posUpdate = [...rightPos];
+        move == 1 ? [posUpdate[newPos], posUpdate[pos]] = [posUpdate[pos], posUpdate[newPos]] :
+        [posUpdate[pos], posUpdate[newPos]] = [posUpdate[newPos], posUpdate[pos]];
+        setRightPos(posUpdate);
+  
+        dataMap.set(`${type}`, [1, newPos]);
         return;
       }
-      let posUpdate = [...rightPos];
-      move == 1 ? [posUpdate[newPos], posUpdate[pos]] = [posUpdate[pos], posUpdate[newPos]] :
-      [posUpdate[pos], posUpdate[newPos]] = [posUpdate[newPos], posUpdate[pos]];
-      setRightPos(posUpdate);
-
-      dataMap.set(`${type}`, [1, newPos]);
-      return;
-    }
-    else {
-      let max = (dataIds.left.filter((obj) => obj.data!='')).length-1;
-      let pos = leftPos.findIndex((x) => x == id[1]);
-      let newPos = pos + move;
-
-      if ((newPos < min) || newPos > max) {
+      else {
+        let max = leftPos.length-1;
+        let pos = leftPos.findIndex((x) => x == id[1]);
+        let newPos = pos + move;
+  
+        if ((newPos < min) || newPos > max) {
+          return;
+        }
+        let posUpdate = [...leftPos];
+        move == 1 ? [posUpdate[newPos], posUpdate[pos]] = [posUpdate[pos], posUpdate[newPos]] :
+        [posUpdate[pos], posUpdate[newPos]] = [posUpdate[newPos], posUpdate[pos]];
+        setLeftPos(posUpdate);
+  
+        dataMap.set(`${type}`, [1, newPos]);
         return;
       }
-      let posUpdate = [...leftPos];
-      move == 1 ? [posUpdate[newPos], posUpdate[pos]] = [posUpdate[pos], posUpdate[newPos]] :
-      [posUpdate[pos], posUpdate[newPos]] = [posUpdate[newPos], posUpdate[pos]];
-      setLeftPos(posUpdate);
-
-      dataMap.set(`${type}`, [1, newPos]);
-      return;
     }
-    
+    else if (direction == 'hor') {
+      if (move+id[0] <= -1 || move+id[0] >= 2) {
+        console.log('Outside Limits')
+        return;
+      }
+      console.log('Valid Horizontal movement')
+      //if right col
+      if (id[0] > 0) {
+        
+        if (rightPos.length > 1) {
+          //Update current array to remove component val
+          let rightPosUpdate = rightPos.filter((val) => val != id[1]);
+          console.log(rightPosUpdate);
+          setRightPos(rightPosUpdate);
+        }
+        else if (rightPos.length == 1) {
+          setRightPos([]);
+        }
+        //place val as first item of new col
+        let leftPosUpdate = [id[1], ...leftPos];
+        setLeftPos(leftPosUpdate);
+        //change col in Map, keep same val
+        dataMap.set(`${type}`, [0, id[1]]);
+        return;
+      }
+      else {
+        if (leftPos.length > 1) {
+          //Update current array to remove component val
+          let leftPosUpdate = leftPos.filter((val) => val != id[1]);
+          console.log(leftPosUpdate);
+          setLeftPos(leftPosUpdate);
+        }
+        else if (leftPos.length == 1) {
+          setLeftPos([]);
+        }
+        //place val as first item of new col
+        let rightPosUpdate = [id[1], ...rightPos];
+        setRightPos(rightPosUpdate);
+        //change col in Map, keep same val
+        dataMap.set(`${type}`, [1, id[1]]);
+        return;
+      }
+    }
   }
 
   const renderCol = (side) => {
@@ -97,18 +141,18 @@ function App() {
     if (side == 'right') {
       for (let i = 0; i < rightPos.length; i++) {
         let val = rightPos[i];
-        compsList.push(<CVSection dataObj={dataIds.right[val].data} sectionType={dataIds.right[val].type} 
-          sectionName={dataIds.right[val].name} pos={val} key={dataIds.right[val].id}/>)
-          dataMap.set(`${dataIds.right[val].type}`, [1, val])
+        compsList.push(<CVSection dataObj={dataIds[val].data} sectionType={dataIds[val].type} 
+          sectionName={dataIds[val].name} pos={val} key={dataIds[val].type}/>)
+          dataMap.set(`${dataIds[val].type}`, [1, val])
       }
       return compsList;
     }
     else if (side == 'left') {
       for (let i = 0; i < leftPos.length; i++) {
         let val = leftPos[i];
-        compsList.push(<CVSection dataObj={dataIds.left[val].data} sectionType={dataIds.left[val].type} 
-          sectionName={dataIds.left[val].name} pos={val} key={dataIds.left[val].id}/>)
-          dataMap.set(`${dataIds.left[val].type}`, [0, val])
+        compsList.push(<CVSection dataObj={dataIds[val].data} sectionType={dataIds[val].type} 
+          sectionName={dataIds[val].name} pos={val} key={dataIds[val].type}/>)
+          dataMap.set(`${dataIds[val].type}`, [0, val])
       }
       return compsList;
     }
@@ -156,9 +200,7 @@ function App() {
                     </div>
                     <div className="cv-right">
                       <div className="contents">
-
                         {rightPos && renderCol('right')}
-
                       </div>
                     </div>
                 </div>
