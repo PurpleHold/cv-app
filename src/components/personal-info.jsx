@@ -9,11 +9,12 @@ function PersonInfo({
     location, setLocation,
     email, setEmail,
     phone, setPhone,
-    website, setWebsite}) {
+    website, setWebsite,
+    pic, setPic, onPicChange}) {
 
     return (
         <Card 
-        title='Personal details'
+        title='Header'
         sectionClass='pers-card'
         content={
         <form>
@@ -27,6 +28,11 @@ function PersonInfo({
             </div>
             <p className="fields-separator">Optional fields</p>
             <div className="extra">
+                <OptField 
+                    label={'Picture'} fieldState={pic} fieldStateFunc={setPic}
+                    onPicChange={onPicChange}
+                    type='file'
+                />
                 <OptField 
                     label={'Occupation '} fieldState={occupation}
                     fieldStateFunc={setOccupation}

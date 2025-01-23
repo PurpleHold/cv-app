@@ -17,6 +17,8 @@ function App() {
   const [email, setEmail] = useState('noemailin1852@email.com');
   const [phone, setPhone] = useState('XX.XX.XX.XX');
   const [website, setWebsite] = useState('');
+  const [pic, setPic] = useState(placeHolder)
+  const [sectionTitle, setSectionTitle] = useState(['Training', 'Experience', 'Skills'])
 
   const [training, setTraining] = useState({
     0:{id:0, title:'Some really interesting degree', orga:'Awesome University', year:'2019', desc:'Any relevant final year project, study trip, dissertation, ...'},
@@ -35,16 +37,13 @@ function App() {
     1:{id:1, title:'Skill2', desc:'Some other desc'},
   });
 
-
-  
-
   const [rightPos, setRightPos] = useState([2]);
   const [leftPos, setLeftPos] = useState([0,1]);
 
   let dataIds = [
-      {data:training,type:'train',name:'Training'},
-      {data:experience,type:'xp',name:'Experience'},
-      {data:skill,type:'skill',name:'Skills'},
+      {data:training,type:'train',name:sectionTitle[0]},
+      {data:experience,type:'xp',name:sectionTitle[1]},
+      {data:skill,type:'skill',name:sectionTitle[2]},
     ];
 
   let dataMap = new Map();
@@ -93,17 +92,15 @@ function App() {
     }
     else if (direction == 'hor') {
       if (move+id[0] <= -1 || move+id[0] >= 2) {
-        console.log('Outside Limits')
+        //Outside limits
         return;
       }
-      console.log('Valid Horizontal movement')
       //if right col
       if (id[0] > 0) {
         
         if (rightPos.length > 1) {
           //Update current array to remove component val
           let rightPosUpdate = rightPos.filter((val) => val != id[1]);
-          console.log(rightPosUpdate);
           setRightPos(rightPosUpdate);
         }
         else if (rightPos.length == 1) {
@@ -120,7 +117,6 @@ function App() {
         if (leftPos.length > 1) {
           //Update current array to remove component val
           let leftPosUpdate = leftPos.filter((val) => val != id[1]);
-          console.log(leftPosUpdate);
           setLeftPos(leftPosUpdate);
         }
         else if (leftPos.length == 1) {
@@ -158,6 +154,14 @@ function App() {
     }
   }
 
+  const onPicChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setPic(URL.createObjectURL(e.target.files[0]))
+        console.log(URL.createObjectURL(e.target.files[0]))
+        console.log(e.target.files[0])
+      }
+    else {console.log('else')}
+}
 
   return (
     <>
@@ -171,15 +175,19 @@ function App() {
               email = {email} setEmail={setEmail}
               phone={phone} setPhone={setPhone}
               website={website} setWebsite={setWebsite}
+              pic={pic} setPic={setPic} onPicChange={onPicChange}
             />
             <Training 
+              title={sectionTitle[0]} sectionTitle={sectionTitle} setSectionTitle={setSectionTitle}
               training={training} setTraining={setTraining} onPosChange={onPosChange}
             />
-            <Exp 
+            <Exp
+              title={sectionTitle[1]} sectionTitle={sectionTitle} setSectionTitle={setSectionTitle}
               experience={experience} setExperience={setExperience} onPosChange={onPosChange}
             />
-            <Skills 
-              skill={skill} setSkill={setSkill} pos={rightPos[0]} onPosChange={onPosChange}
+            <Skills
+              title={sectionTitle[2]} sectionTitle={sectionTitle} setSectionTitle={setSectionTitle}
+              skill={skill} setSkill={setSkill} onPosChange={onPosChange}
             />
       </div>
       <div className="doc-container">
@@ -189,9 +197,10 @@ function App() {
                       firstName={firstName} lastName={lastName} 
                       occupation={occupation} 
                       location={location} email={email} phone={phone} website={website}
+                      pic={pic}
                     />
                     <div className="cv-pic">
-                        <img src={placeHolder} alt="profile picture dimensions, 250 height 200 width pixels" />
+                        <img src={pic} alt="profile picture dimensions, 250 height 200 width pixels" />
                     </div>
                     <div className="cv-left">
                       <div className="contents">

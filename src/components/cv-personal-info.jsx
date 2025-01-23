@@ -1,7 +1,7 @@
-function CVPersInfo({firstName, lastName, occupation, location, email, phone, website}) {
+function CVPersInfo({firstName, lastName, occupation, location, email, phone, website, pic}) {
 
     return (
-        <div className="cv-pers">
+        <div className={`cv-pers ${pic==''&&'no-pic'}`}>
             <div className="fullname">{firstName} <span className="last">{lastName}</span></div>
             <div className="occupation">{occupation}</div>
             <div className="contact">

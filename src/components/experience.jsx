@@ -1,7 +1,7 @@
 import Card from "./card"
 import SectionForm from "./section-form"
 
-function Exp({experience, setExperience, onPosChange}) {
+function Exp({experience, setExperience, onPosChange, title, sectionTitle, setSectionTitle}) {
     let newId = Object.entries(experience).length;
     const handleFormCreation = () => {
         let xpUpdate = { ...experience, [newId]: 
@@ -25,7 +25,9 @@ function Exp({experience, setExperience, onPosChange}) {
     return (
         <Card 
         onPosChange={onPosChange}
-        title='Experience'
+        title={title}
+        sectionTitle={sectionTitle}
+        setSectionTitle={setSectionTitle}
         sectionClass='exp-card'
         type='xp'
         content={

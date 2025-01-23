@@ -1,7 +1,7 @@
 import Card from "./card"
 import SectionForm from "./section-form"
 
-function Skills({skill, setSkill, pos, onPosChange}) {
+function Skills({skill, setSkill, onPosChange, title, sectionTitle, setSectionTitle}) {
     let newId = Object.entries(skill).length;
     const handleFormCreation = () => {
         let skillUpdate = { ...skill, [newId]: 
@@ -25,8 +25,9 @@ function Skills({skill, setSkill, pos, onPosChange}) {
     return (
         <Card
         onPosChange={onPosChange}
-        pos={pos}
-        title='Skills'
+        title={title}
+        sectionTitle={sectionTitle}
+        setSectionTitle={setSectionTitle}
         sectionClass='skill-card'
         type='skill'
         content={

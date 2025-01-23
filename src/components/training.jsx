@@ -1,7 +1,7 @@
 import Card from "./card"
 import SectionForm from "./section-form"
 
-function Training({training, setTraining, onPosChange}) {
+function Training({training, setTraining, onPosChange, title, sectionTitle, setSectionTitle}) {
     
     let trainingsArr = [];
     for (let i = 0; i < Object.entries(training).length; i++) {
@@ -28,7 +28,9 @@ function Training({training, setTraining, onPosChange}) {
     return (
         <Card
         onPosChange={onPosChange}
-        title='Training'
+        title={title}
+        sectionTitle={sectionTitle}
+        setSectionTitle={setSectionTitle}
         sectionClass={'train-card'}
         type='train'
         content={

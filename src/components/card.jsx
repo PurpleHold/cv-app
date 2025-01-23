@@ -1,8 +1,19 @@
 import { useState } from "react"
 
 
-function Card({title, content, sectionClass='', type, onPosChange}) {
+function Card({title, sectionTitle, setSectionTitle, content, sectionClass='', type, onPosChange}) {
     const [isHidden, setIsHidden] = useState(true);
+    const [editStatus, setEditStatus] = useState(false);
+    const handleTitleChange = (e) => {
+        const newTitles = sectionTitle.map((val) => {
+            if (val == title) {
+                return e.target.value;
+            } else {
+                return val;
+            }
+        });
+        setSectionTitle(newTitles);
+    }
 
     return (
         <div className={`card ${sectionClass}`}>
@@ -12,21 +23,34 @@ function Card({title, content, sectionClass='', type, onPosChange}) {
                     {isHidden ? <i className="iconoir-nav-arrow-down"></i> : <i className="iconoir-nav-arrow-up"></i>}
                 </button>
                 {(!isHidden && sectionClass!='pers-card') && (
-                <div className="position">
-                    <p>Position</p>
-                    <div className="pos-container">
-                        <button aria-label="up" className="pos-up" onClick={() => onPosChange(type, -1, 'ver')}>
-                            <i className="iconoir-page-up"></i>
-                        </button>
-                        <button aria-label="left" className="pos-left" onClick={() => onPosChange(type, -1, 'hor')}>
-                            <i className="iconoir-page-left"></i>
-                        </button>
-                        <button aria-label="right" className="pos-right" onClick={() => onPosChange(type, 1, 'hor')}>
-                            <i className="iconoir-page-right"></i>
-                        </button>
-                        <button aria-label="down" className="pos-down" onClick={() => onPosChange(type, 1, 'ver')}>
-                            <i className="iconoir-page-down"></i>
-                        </button>
+                <div className="card-head-btns">
+                    <div className={`edit-title ${editStatus? 'on':'off'}-edit`}>
+                        {!editStatus &&
+                        <button onClick={() => setEditStatus(!editStatus)}>
+                            Edit title<i className="iconoir-edit-pencil"></i>
+                        </button>}
+                        {editStatus &&
+                        <>
+                            <input type="text" placeholder={title} onChange={(e) => handleTitleChange(e)}/>
+                            <button onClick={() => setEditStatus(!editStatus)}><i className="iconoir-check-circle"></i></button>
+                        </>}
+                    </div>
+                    <div className="position">
+                        <p>Position</p>
+                        <div className="pos-container">
+                            <button aria-label="up" className="pos-up" onClick={() => onPosChange(type, -1, 'ver')}>
+                                <i className="iconoir-page-up"></i>
+                            </button>
+                            <button aria-label="left" className="pos-left" onClick={() => onPosChange(type, -1, 'hor')}>
+                                <i className="iconoir-page-left"></i>
+                            </button>
+                            <button aria-label="right" className="pos-right" onClick={() => onPosChange(type, 1, 'hor')}>
+                                <i className="iconoir-page-right"></i>
+                            </button>
+                            <button aria-label="down" className="pos-down" onClick={() => onPosChange(type, 1, 'ver')}>
+                                <i className="iconoir-page-down"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
