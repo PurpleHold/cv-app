@@ -15,7 +15,15 @@
   overflow: hidden;
   color: var(--main-text-color);
 }
-
+p {
+  line-height: 1.25rem;
+}
+button {
+  border-radius: 6px;
+}
+.icon-off i{
+  display: none;
+}
 
 
 header {
@@ -33,7 +41,12 @@ header {
   display: flex;
   font-size: 2rem;
 }
-
+a.logo {
+  color: var(--main-text-color);
+}
+a.logo:hover {
+  color: var(--side-bg-color);
+}
 
 
 /* INPUT */
@@ -53,7 +66,7 @@ header {
   background: #fff;
   border-radius: 5px;
 }
-.card .top {
+.card .top, .new-container .new-top {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   align-items: center;
@@ -104,7 +117,7 @@ header {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
 }
 .card-header.on {
   border-radius: 5px 5px 0 0;
@@ -151,6 +164,7 @@ header {
   background: none;
   color: var(--main-text-color);
   padding: 0.15rem 0.33rem;
+  display: flex;
 }
 .edit-title.on-edit button i{
   font-size: 1.75rem;
@@ -197,7 +211,6 @@ header {
 .opt.off {
   background: #e2f3f8;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
   gap: 1rem;
   align-items: center;
   justify-content: center;
@@ -250,18 +263,18 @@ textarea {
 .off .form-header .form-delete {
   display: none;
 }
-button.add {
-  background: none;
-  border: 2pt solid #4067f4;
-  color: #4067f4;
-  letter-spacing: 1px;
-  padding: 0.5rem 2rem;
-  align-self: flex-start;
+.edit-btns-container {
+  display: flex;
+  justify-content: space-between;
 }
-button.add:hover {
-  background: #e2f3f8;
-  color: #07057c;
-  border-color: #07057c;
+button.del {
+  letter-spacing: 1px;
+  background: black;
+  color: #fff;
+}
+button.add {
+  letter-spacing: 1px;
+  align-self: flex-start;
 }
 button.form-delete:hover {
   background: black;
@@ -307,6 +320,7 @@ button.form-delete {
   font-weight: 600;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
+  line-height: normal;
 }
 .cv-left .section-title {
   color: var(--main-text-color);
@@ -370,6 +384,10 @@ button.form-delete {
   gap: 0.5rem 1rem;
   line-height: normal;
 }
+.contact div {
+  display: flex;
+  align-items: center;
+}
 .cv-pic {
   z-index: 99;
   grid-area: 1 / 3 / 2 / 4;
@@ -390,10 +408,13 @@ button.form-delete {
   background: var(--side-bg-color);
   color: var(--side-text-color);
 }
+.cv-right .section-title, .cv-right .title {
+  margin-right: 1.5rem;
+}
 .cv-right {
   grid-area: 1 / 3 / 4 / 4;
   background: var(--side-bg-color);
-  padding: 1.5rem 3rem 3.5rem 1.5rem;
+  padding: 1.5rem 1.5rem 3.5rem 1.5rem;
   grid-template-areas: '.'
   'side-contents';
   color: var(--side-text-color);
@@ -419,7 +440,7 @@ button.form-delete {
 }
 .train-entries, .xp-entries, .skill-entries {
   display: grid;
-  gap: 1.5rem;
+  gap: 1rem;
   line-height: 1.4rem;
 }
 .train-entries div p, .xp-entries div p, .skill-entries div p {
@@ -445,11 +466,11 @@ button.form-delete {
 .cv-right.alt .title::before {
   border-left: 4px solid var(--main-text-color);
 }
-.train-entries .univ, .xp-entries .orga {
+.univ, .orga {
   font-style: italic;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
-.train-entries .year, .xp-entries .year {
+.year {
   letter-spacing: 3px;
 }
 .cv-xp-container {
@@ -460,11 +481,28 @@ button.form-delete {
   gap: 1.3rem;
   justify-content: space-between;
 }
-.orga {
-  padding-bottom: 0.5rem;
+.cv-right .skill-entries .title {
+  background: var(--main-text-color);
+  padding: 0.33rem 0;
 }
-.cv-skill-container {
-  
+.cv-right .skill-entries .title::before {
+  border: none;
+}
+.new-top button, button.add{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  font-size: 1.1rem;
+  color: var(--main-text-color);
+  border: 2pt dashed var(--side-bg-color);
+}
+.new-top button:hover, button.add:hover {
+  border: 2pt solid var(--side-bg-color);
+}
+.new-top i, button.add i {
+  font-size: 1.5rem;
 }
 
 
