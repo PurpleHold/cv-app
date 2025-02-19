@@ -1,4 +1,4 @@
-function CVSection({dataObj, allSections, side, sectionType, sectionName, pos, custom}) {
+function CVSection({allSections, side}) {
     let dataArr = [];
     let sideVal = side=='right'? 1 : 0;
 
@@ -15,6 +15,7 @@ function CVSection({dataObj, allSections, side, sectionType, sectionName, pos, c
                             </div>
                             {child.orga && (<p className="orga">{child.orga}</p>)}
                             {child.desc && (<p className="desc">{child.desc}</p>)}
+                            {child.link && (<a href={`${child.link.includes('https://www.')?child.link:('https://www.'+child.link)}`}>{child.link}</a>)}
                         </div>
                     )
                 }
@@ -23,33 +24,9 @@ function CVSection({dataObj, allSections, side, sectionType, sectionName, pos, c
         return childItems;
     }
 
-    if (!custom) {
-        for (let i = 0; i < Object.entries(dataObj).length; i++) {
-            dataArr.push(
-                dataObj[i] && (
-                    <div key={dataObj[i].id}>
-                        <div className={`${sectionType}-header`}>
-                            {dataObj[i].title && (<p className="title">{dataObj[i].title}</p>)}
-                            {dataObj[i].year && (<p className="year">{dataObj[i].year}</p>)}
-                        </div>
-                        {dataObj[i].orga && (<p className="orga">{dataObj[i].orga}</p>)}
-                        {dataObj[i].desc && (<p className="desc">{dataObj[i].desc}</p>)}
-                    </div>
-                )
-            )
-        }
-        return (
-            <div className={`cv-${sectionType}-container`} data-position={pos}>
-                {(sectionName.trim().length!=0) && <p className="section-title">{sectionName}</p>}
-                <div className={`${sectionType}-entries`}>{dataArr!=[] && dataArr}</div>
-            </div>
-        )
-    }
-    else if(custom) {
-
         allSections.forEach((section) => {
             (!section.parentId && section.pos[0] == sideVal) && dataArr.push(
-                <div className={`cv-${section.type}-container`} key={section.id}>
+                <div className={`cv-${section.class}-container`} key={section.id}>
                     {(section.title.trim().length!=0) && <p className="section-title">{section.title}</p>}
                     <div className={`${section.type}-entries`}>
                         {renderChildren(section)}
@@ -60,7 +37,6 @@ function CVSection({dataObj, allSections, side, sectionType, sectionName, pos, c
         return (
             dataArr
         )
-    }
 }
 
 export default CVSection

@@ -3,6 +3,9 @@
   --side-text-color: #fff;
   --side-bg-color: #4067f4;
   --main-bg-color: linear-gradient(157deg, rgba(232,223,229,1) 0%, rgba(212,243,254,1) 100%);
+  --side-links-color: #2cffd0;
+  --side-links-hover: #0bcbcb;
+  --shadow-color: 0deg 0% 63%;
 
   margin: 0 auto;
   display: grid;
@@ -176,7 +179,7 @@ a.logo:hover {
   padding: 2rem 1.5rem;
   margin-bottom: 2rem;
 }
-.card form .main-form, .pers-card form .extra {
+.card form .main-form, .pers-card form .extra, .custom .extra {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
@@ -192,7 +195,8 @@ a.logo:hover {
   padding: 0.5rem 0.5rem;
 }
 .card-content label {
-  margin: 0;
+	margin: 0;
+	display: grid;
 }
 .edit-train-container, .edit-xp-container, .edit-skill-container {
   display: flex;
@@ -284,6 +288,9 @@ button.form-delete {
   background: none;
   border: 2pt solid black;
 }
+.custom .extra {
+  padding-top: 1rem;
+}
 
 
 /* OUTPUT */
@@ -307,6 +314,14 @@ button.form-delete {
   height: 29.7cm;
   grid-template-rows: 1.2fr 1.5fr 1.5fr;
   grid-template-columns: 1.3fr 1fr 1fr;
+  box-shadow: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.1),
+  1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.1),
+  2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.1),
+  4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.1),
+  7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.1),
+  11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.1),
+  17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.1),
+  25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.1);
 
 }
 .cv-right, .cv-left {
@@ -322,21 +337,19 @@ button.form-delete {
   margin-bottom: 1rem;
   line-height: normal;
 }
-.cv-left .section-title {
+.cv-left .section-title, .cv-right.alt .section-title {
   color: var(--main-text-color);
   border-bottom: 1pt solid var(--main-text-color);
 }
-.cv-left.alt .section-title {
-  color: var(--side-text-color);
-  border-bottom: 1pt solid var(--side-text-color);;
-}
-.cv-right .section-title {
+.cv-left.alt .section-title, .cv-right .section-title {
   color: var(--side-text-color);
   border-bottom: 1pt solid var(--side-text-color);
 }
-.cv-right.alt .section-title {
-  color: var(--main-text-color);
-  border-bottom: 1pt solid var(--main-text-color);
+.cv-left.alt a, .cv-right a {
+  color: var(--side-links-color);
+}
+.cv-left.alt a:hover, .cv-right a:hover {
+  color: var(--side-links-hover);
 }
 .cv-pers {
   grid-area: 1 / 1 / 1 / 4;
@@ -433,14 +446,17 @@ button.form-delete {
 .cv-right .contents, .cv-left .contents {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 .off form {
   display: none;
 }
+.on form {
+  padding-bottom: 3rem;
+}
 .train-entries, .xp-entries, .skill-entries {
   display: grid;
-  gap: 1rem;
+  gap: 0.75rem;
   line-height: 1.4rem;
 }
 .train-entries div p, .xp-entries div p, .skill-entries div p {
@@ -450,7 +466,7 @@ button.form-delete {
 .train-entries .title, .xp-entries .title, .skill-entries .title {
   font-weight: 600;
 }
-.train-entries .title::before, .xp-entries .title::before, .skill-entries .title::before  {
+.train-entries .title::before, .xp-entries .title::before, .skill-entries .title::before, .custom-entries .title::before  {
   padding-left: 7px;
   content: '';
 }
@@ -473,8 +489,8 @@ button.form-delete {
 .year {
   letter-spacing: 3px;
 }
-.cv-xp-container {
-  
+p.desc {
+  margin: 0;
 }
 .xp-header, .train-header {
   display: flex;
@@ -482,8 +498,10 @@ button.form-delete {
   justify-content: space-between;
 }
 .cv-right .skill-entries .title {
+  letter-spacing: 1px;
   background: var(--main-text-color);
   padding: 0.33rem 0;
+  margin-bottom: 0.25rem;
 }
 .cv-right .skill-entries .title::before {
   border: none;
@@ -505,6 +523,44 @@ button.form-delete {
   font-size: 1.5rem;
 }
 
+/* Tag mode */
+.toggle-tags {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  flex-direction: row;
+  margin-top: -2rem;
+}
+.toggle-tags button {
+  background: none;
+  padding: 0.25rem 0.75rem;
+}
+
+
+.cv-tag-container p {
+  display: none;
+}
+.cv-tag-container p.title, .cv-tag-container p.section-title {
+  display: block;
+}
+.cv-tag-container p.title::before {
+  display: none;
+}
+.cv-tag-container [class$="entries"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.cv-tag-container .title, .cv-right .cv-tag-container .skill-entries .title  {
+  background: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.5px 1px 1px hsl(241.48deg 64.31% 47.16% / 45%), 2px 3px 3px hsl(241.48deg 64.31% 47.16% / 45%);
+}
+.cv-right .cv-tag-container .skill-entries .title {
+  margin-right: 0;
+  color: var(--main-text-color);
+}
 
 /* Print */
 @media print {

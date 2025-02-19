@@ -5,6 +5,7 @@ import SectionForm from "./section-form"
 function InputSection({sectionId, allSections, setSection}) {
     const [isHidden, setIsHidden] = useState(true);
     const [editStatus, setEditStatus] = useState(false);
+    const [isTag, setTagStatus] = useState(false);
 
     const section = allSections.filter((x) => x.id == sectionId)[0];
     let col = section.pos[0];
@@ -65,7 +66,9 @@ function InputSection({sectionId, allSections, setSection}) {
         allSections.forEach((item) =>  {
             if (item.parentId == sectionId) {
                 childComps.push(
-                    <SectionForm sectionChild={item} stateVal={allSections} stateFn={setSection} formType={'custom'} key={item.id} custom={true}/>
+                    <SectionForm sectionChild={item} stateVal={allSections} stateFn={setSection} 
+                    formType={item.type ? item.type : 'custom'} 
+                    key={item.id} custom={true}/>
                 )
             }
         });
@@ -83,10 +86,12 @@ function InputSection({sectionId, allSections, setSection}) {
         const newId = getUid();
         let addChild = [ ...allSections,
             {title: 'Entry title',
+            type: section.type,
             id: newId,
             pos:(section.childIds.length)+1,
             parentId: sectionId,
             desc: 'Entry description',
+            link:'',
             }
         ];
         let childAndRef = addChild.map(x => {
@@ -107,12 +112,34 @@ function InputSection({sectionId, allSections, setSection}) {
         setSection(sectionsUpd);
     }
 
+    const handleTagStatus = (e) => {
+        e.preventDefault();
+        let newTagStatus = !isTag;
+        
+        let classUpd;
+        
+        if (newTagStatus) {
+                classUpd = allSections.map(x => {
+                if (x.id == section.id) { return {...x, class: 'tag'}}
+                else { return x; }
+            });
+        }
+        else {
+            classUpd = allSections.map(x => {
+                if (x.id == section.id) { return {...x, class: 'custom'}}
+                else { return x; }
+            });
+        }
+        setSection(classUpd);
+        setTagStatus(newTagStatus);
+    }
+
     return(
         <>
         <div className={`card ${section.class}`}>
             <div className="top">
                 <button className={`card-header ${!isHidden ? 'on' : 'off'}`} onClick={() => setIsHidden(!isHidden)}>
-                    {(section.title.trim().length!=0) && <h2>{section.title}</h2>}
+                    {(section.title.trim().length!=0 ? <h2>{section.title}</h2> :  <h2>{'No title'}</h2>)}
                     {isHidden ? <i className="iconoir-nav-arrow-down"></i> : <i className="iconoir-nav-arrow-up"></i>}
                 </button>
                 {(!isHidden && section.class!='pers-card') && (
@@ -150,6 +177,10 @@ function InputSection({sectionId, allSections, setSection}) {
             </div>
             {!isHidden && (
                 <div className="card-content">
+                    <div className="toggle-tags">
+                        Tags mode
+                        <button onClick={(e) => handleTagStatus(e)}> {isTag ? <i className="iconoir-switch-on"></i> : <i className="iconoir-switch-off"></i>}</button>
+                    </div>
                     <div className={`edit-${section.type}-container`}>{childComps}</div>
                     <div className="edit-btns-container">
                         <button className="add" onClick={(e) => handleFormCreation(e)}>New</button>

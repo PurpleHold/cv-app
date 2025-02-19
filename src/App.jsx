@@ -20,7 +20,7 @@ function App() {
   const [location, setLocation] = useState('Ockham, Surrey, UK');
   const [email, setEmail] = useState('noemailin1852@email.com');
   const [phone, setPhone] = useState('XX.XX.XX.XX');
-  const [website, setWebsite] = useState('');
+  const [website, setWebsite] = useState('your-website.com');
   const [pic, setPic] = useState(placeHolder);
 
   const [newSection, setNewSection] = useState(initialSections);

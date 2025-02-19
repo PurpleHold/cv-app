@@ -34,24 +34,22 @@ function PersonInfo({
                     type='file'
                 />
                 <OptField 
-                    label={'Occupation '} fieldState={occupation}
-                    fieldStateFunc={setOccupation}
+                    label={'Occupation '} fieldState={occupation} fieldStateFunc={setOccupation}
                 />
                 <OptField 
-                    label={'Location '} fieldState={location}
-                    fieldStateFunc={setLocation}
+                    label={'Location '} fieldState={location} fieldStateFunc={setLocation}
                 />
                 <OptField 
-                    label={'Email '} type='email' fieldState={email}
-                    fieldStateFunc={setEmail}
+                    label={'Email '} fieldState={email} fieldStateFunc={setEmail}
+                    type='email' 
                 />
                 <OptField 
-                    label={'Phone '} type='tel' fieldState={phone}
-                    fieldStateFunc={setPhone}
+                    label={'Phone '} fieldState={phone} fieldStateFunc={setPhone}
+                    type='tel' 
                 />
                 <OptField 
-                    label={'Website '} fieldState={website}
-                    fieldStateFunc={setWebsite} empty={true}
+                    label={'Website '} fieldState={website} fieldStateFunc={setWebsite}
+                    type='url'
                 />
             </div>
         </form>

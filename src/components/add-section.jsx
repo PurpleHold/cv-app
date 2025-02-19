@@ -28,7 +28,7 @@ function AddSection({stateVal, stateFn}) {
         <>
             <div className="new-container">
                 <div className="new-top">
-                    <button onClick={(e) => handleSectionCreation(e)}>Add custom section <i className="iconoir-plus-square"></i></button>
+                    <button onClick={(e) => handleSectionCreation(e)}>Custom section <i className="iconoir-plus-square"></i></button>
                 </div>
             </div>
         </>
