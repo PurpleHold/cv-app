@@ -1,4 +1,16 @@
-function CVPersInfo({firstName, lastName, occupation, location, email, phone, website, pic}) {
+import { getUid } from "../getUid";
+
+function CVPersInfo({firstName, lastName, occupation, location, email, phone, website, pic, tags}) {
+
+    let tagsDivs = [];
+    if (tags) {
+        tags.forEach(tag => {
+            let newId = getUid();
+            tagsDivs.push(
+                <div className="header-tag" key={newId}>{tag}</div>
+            )
+        });
+    }
 
     return (
         <div className={`cv-pers ${pic==''&&'no-pic'}`}>
@@ -12,6 +24,7 @@ function CVPersInfo({firstName, lastName, occupation, location, email, phone, we
                     <a href={`${website.includes('https://www.')?website:('https://www.'+website)}`}>{website}</a>
                 </div>}
             </div>
+            {tags && <div className="tags">{tagsDivs}</div>}
         </div>
     )
 }

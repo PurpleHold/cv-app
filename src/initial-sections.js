@@ -13,4 +13,13 @@ export const initialSections = [
     {title:'Skill3', type:'skill', id:12, pos:2, lineVal:2, parentId:4, desc:'Yet another desc',},
   ];
 
-  
+export const initialHead = {
+  firstName: 'Ada',
+  lastName: 'Lovelace',
+  occupation: 'Mathematician & Inventor',
+  location: 'Ockham, Surrey, UK',
+  email: 'noemailin1852@email.com',
+  phone: 'XX.XX.XX.XX',
+  website: 'your-website.com',
+  tags: [],
+} 

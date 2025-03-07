@@ -71,6 +71,8 @@ function SectionForm({id, stateVal, stateFn, formType, custom, sectionChild}) {
                         <textarea placeholder={sectionChild.desc} onChange={(e) => handleFormChange(e, 'desc')} rows={3}>
                         </textarea>
                         </label>
+                        <OptField label='Link ' empty="true" type="url" custom={true} propName='link' id={id}
+                        val={sectionChild.link?sectionChild.link:''} handleChange={(e) => handleFormChange(e, 'link')}/>
                     </div>
                 </form>
             </div>
@@ -107,7 +109,7 @@ function SectionForm({id, stateVal, stateFn, formType, custom, sectionChild}) {
             </>
         )
     }
-    else if(formType == 'custom') {
+    else if(formType == 'custom' || formType == 'intro') {
         custom = true;
         return (
             <>
@@ -131,8 +133,8 @@ function SectionForm({id, stateVal, stateFn, formType, custom, sectionChild}) {
                             </label>
                         </div>
                         <div className="extra">
-                            <OptField label='Link ' empty="true" type="url" custom="true" propName='link' id={id}
-                            val={sectionChild.link?sectionChild.link:''} handleChange={handleFormChange}/>
+                            <OptField label='Link ' empty="true" type="url" custom={true} propName='link' id={id}
+                            val={sectionChild.link?sectionChild.link:''} handleChange={(e) => handleFormChange(e, 'link')}/>
                         </div>
                     </form>
                 </div>

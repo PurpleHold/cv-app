@@ -3,6 +3,8 @@ import placeHolder from '../assets/placeholder.png'
 
 function OptField({label, type='text', fieldState, fieldStateFunc, empty=false, onPicChange, custom=false, val, propName, handleChange}) {
     const [hideStatus, setHideStatus] = useState(empty ? true : false);
+    const [tagStatus, setTagStatus] = useState(true);
+
     const handleHideStatus = (e) => {
         e.preventDefault();
         setHideStatus(!hideStatus);
@@ -16,15 +18,32 @@ function OptField({label, type='text', fieldState, fieldStateFunc, empty=false, 
             }
         }
     };
+    const handleTagStatus = (e) => {
+        e.preventDefault();
+        setTagStatus(!tagStatus);
+        handleChange(e, propName, true);
+    }
 
-    if (custom == false) {
+
+
+    if (label == 'Tags list' || label == 'Etiquettes') {
+        return (
+            <div className={`opt ${!tagStatus ? 'on' : 'off'} taglist`}>
+                <label>{tagStatus ? label : `${label} (Use commas to separate tags)`}
+                     <input type={type} value={val} placeholder={val} onChange={(e) => handleChange(e, propName)}/>
+                </label>
+                <button onClick={handleTagStatus} className="tagsBtn">
+                {tagStatus ? 'Add' : 'X'}
+                </button>
+            </div>
+        )
+    }
+    else if (custom) {
+        console.log('custom true')
         return (
             <div className={`opt ${!hideStatus ? 'on' : 'off'}`}>
                 <label>{label}
-                     {type!='file' &&
-                     <input type={type} value={fieldState} placeholder={fieldState} onChange={(e) => fieldStateFunc(e.target.value)}/>}
-                     {type=='file' &&
-                     <input type={type} placeholder={fieldState} onChange={onPicChange}/>}
+                     <input type={type} value={val} placeholder={val} onChange={(e) => handleChange(e, propName)}/>
                 </label>
                 <button onClick={handleHideStatus}>
                 {hideStatus ? 'Add' : 'X'}
@@ -36,7 +55,10 @@ function OptField({label, type='text', fieldState, fieldStateFunc, empty=false, 
         return (
             <div className={`opt ${!hideStatus ? 'on' : 'off'}`}>
                 <label>{label}
-                     <input type={type} value={val} placeholder={val} onChange={(e) => handleChange(e, propName)}/>
+                     {type!='file' &&
+                     <input type={type} value={fieldState} placeholder={fieldState} onChange={(e) => fieldStateFunc(e.target.value)}/>}
+                     {type=='file' &&
+                     <input type={type} placeholder={fieldState} onChange={onPicChange}/>}
                 </label>
                 <button onClick={handleHideStatus}>
                 {hideStatus ? 'Add' : 'X'}

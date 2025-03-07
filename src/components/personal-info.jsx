@@ -10,7 +10,13 @@ function PersonInfo({
     email, setEmail,
     phone, setPhone,
     website, setWebsite,
-    pic, setPic, onPicChange}) {
+    pic, setPic, onPicChange,
+    tags, setTags,}) {
+
+    const handleTagChange = (e) => {
+        let tagsUpd = (e.target.value).split(',');
+        setTags(tagsUpd);
+    }
 
     return (
         <Card 
@@ -50,6 +56,10 @@ function PersonInfo({
                 <OptField 
                     label={'Website '} fieldState={website} fieldStateFunc={setWebsite}
                     type='url'
+                />
+                <OptField
+                    label={'Tags list'} fieldState={tags} empty={true} custom={true} 
+                    handleChange={(e) => handleTagChange(e)}
                 />
             </div>
         </form>
