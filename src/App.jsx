@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import './styles/App.css'
 import {initialSections, initialHead} from './initial-sections.js'
 //import { bdlSections, bdlHead } from '../bdl-sections.js'
 import placeHolder from './assets/placeholder.png'

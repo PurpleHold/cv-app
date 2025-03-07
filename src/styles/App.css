@@ -26,6 +26,14 @@
 p {
   line-height: 1.2rem;
 }
+a {
+  font-weight: 500;
+  color: #4067f4;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #565df4;
+}
 button {
   border-radius: 6px;
 }
