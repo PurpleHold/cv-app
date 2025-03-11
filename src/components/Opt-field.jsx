@@ -39,7 +39,6 @@ function OptField({label, type='text', fieldState, fieldStateFunc, empty=false, 
         )
     }
     else if (custom) {
-        console.log('custom true')
         return (
             <div className={`opt ${!hideStatus ? 'on' : 'off'}`}>
                 <label>{label}
