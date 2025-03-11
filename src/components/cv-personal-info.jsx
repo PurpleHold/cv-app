@@ -17,10 +17,10 @@ function CVPersInfo({firstName, lastName, occupation, location, email, phone, we
             <div className="fullname">{firstName} <span className="last">{lastName}</span></div>
             <div className="occupation">{occupation}</div>
             <div className="contact">
-                {location && <div className="location"><i className="iconoir-map-pin"></i>{location}</div>}
-                {email && <div className="email"><i className="iconoir-mail"></i>{email}</div>}
-                {phone && <div className="phone"><i className="iconoir-phone"></i>{phone}</div>}
-                {website && <div className="website"><i className="iconoir-link"></i>
+                {location && <div className="location"><img className="cv-ico" src="/src/assets/map-pin-line.svg"/><p>{location}</p></div>}
+                {email && <div className="email"><img className="cv-ico" src="/src/assets/mail-line.svg"/><p>{email}</p></div>}
+                {phone && <div className="phone"><img className="cv-ico" src="/src/assets/phone-line.svg"/><p>{phone}</p></div>}
+                {website && <div className="website"><img className="cv-ico" src="/src/assets/link.svg"/>
                     <a href={`${website.includes('https://www.')?website:('https://www.'+website)}`}>{website}</a>
                 </div>}
             </div>

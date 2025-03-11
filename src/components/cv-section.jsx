@@ -14,8 +14,8 @@ function CVSection({allSections, side}) {
                                 {child.year && (<p className="year">{child.year}</p>)}
                             </div>
                             {child.orga && (<p className="orga">{child.orga}</p>)}
-                            {child.desc && (<p className="desc">{child.type == 'intro' ? <i className="iconoir-quote-solid"></i> : ''}{child.desc}</p>)}
-                            {child.link && (<a href={`${child.link.includes('https://www.')?child.link:('https://www.'+child.link)}`}>{child.link}</a>)}
+                            {child.desc && (<p className="desc">{child.desc}</p>)}
+                            {child.link && (<a href={`${child.link.includes('https://www.')?child.link:('https://www.'+child.link)}`}>{(child.linkName)?child.linkName:child.link}</a>)}
                         </div>
                     )
                 }

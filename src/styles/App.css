@@ -230,6 +230,9 @@ a.logo:hover {
 .opt {
   display: flex;
 }
+.opt button {
+	background: #fff;
+}
 .opt.off {
   background: #e2f3f8;
   padding: 0.5rem 1rem;
@@ -399,6 +402,11 @@ button.form-delete {
   max-width: none;
   z-index: 100;
 }
+img.cv-ico {
+  width: 18px;
+  opacity: 0.8;
+  padding-right: 0.25rem;
+}
 .fullname {
   font-size: 2.5rem;
   font-weight: 300;
@@ -428,6 +436,9 @@ button.form-delete {
 .contact div {
   display: flex;
   align-items: center;
+}
+.contact div p {
+  margin: 0;
 }
 .cv-pic {
   z-index: 99;
@@ -487,11 +498,11 @@ button.form-delete {
   gap: 0.75rem;
   line-height: 1.4rem;
 }
-.train-entries div p, .xp-entries div p, .skill-entries div p {
+[class$="entries"] div p {
   margin: 0;
   padding: 0;
 }
-.train-entries .title, .xp-entries .title, .skill-entries .title {
+[class$="entries"] .title {
   font-weight: 600;
 }
 .train-entries .title::before, .xp-entries .title::before, .skill-entries .title::before, .custom-entries .title::before  {
